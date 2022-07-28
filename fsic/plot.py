@@ -48,6 +48,7 @@ def absolute(
         hue="active",
         palette=palette,
     )
+    g.set_ylabels(label="average_length")
     # g.add_legend()
 
 
@@ -65,6 +66,7 @@ def percentage_optimal(
                       (df[separate_by["row"]] == y))]
     
             for a in [True]:
+            # for a in [True,False]:
                 _adf = _df[_df["active"] == a]
 
                 _bdf = (
@@ -118,6 +120,7 @@ def success_rate(
                       (df[separate_by["row"]] == y))]
     
             for a in [True]:
+            # for a in [True,False]:
                 _adf = _df[_df["active"] == a]
 
                 _bdf = (
