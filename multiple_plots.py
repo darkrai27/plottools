@@ -4,11 +4,11 @@ import os
 
 from fsic import convert, io, merge, plot, query, transform
 
-PATH_TO_EXPERIMENTS = "C:\\Users\Z004HK5F\Desktop\Bachelor\doubleRegressor\LGBM\min_samples=5"
+PATH_TO_EXPERIMENTS = "C:\\Users\Z004HK5F\Desktop\Bachelor\doubleRegressor\epsilonComparison"
 for experiment in os.listdir(PATH_TO_EXPERIMENTS):
     # Query / filter experiments by some callback.
     # Here we filter all experiment which have a experiment) name starting with a given prefix.
-    if os.path.isdir(f"{PATH_TO_EXPERIMENTS}/{experiment}") and not os.path.exists(f"{PATH_TO_EXPERIMENTS}/{experiment}/evals_length.png") and os.path.exists(f"{PATH_TO_EXPERIMENTS}/{experiment}/meta.yaml"):
+    if os.path.isdir(f"{PATH_TO_EXPERIMENTS}/{experiment}") and not os.path.exists(f"{PATH_TO_EXPERIMENTS}/{experiment}/evals_length.png") and os.path.exists(f"{PATH_TO_EXPERIMENTS}/{experiment}/eval.parquet"):
         experiment_paths = [f"{PATH_TO_EXPERIMENTS}/{experiment}"]   
     else:
         print(f"Skipping {experiment}")

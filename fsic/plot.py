@@ -65,8 +65,8 @@ def percentage_optimal(
             _df = df[((df[separate_by["col"]] == x) &
                       (df[separate_by["row"]] == y))]
     
-            for a in [True]:
-            # for a in [True,False]:
+            # for a in [True]:
+            for a in [True,False]:
                 _adf = _df[_df["active"] == a]
 
                 _bdf = (
@@ -119,8 +119,8 @@ def success_rate(
             _df = df[((df[separate_by["col"]] == x) &
                       (df[separate_by["row"]] == y))]
     
-            for a in [True]:
-            # for a in [True,False]:
+            # for a in [True]:
+            for a in [True,False]:
                 _adf = _df[_df["active"] == a]
 
                 _bdf = (
@@ -161,7 +161,7 @@ def success_rate(
     )
 
     g.set(ylim=(0,1))
-    # g.add_legend()
+    g.add_legend()
 
 
 def episode_lengths(df: pd.DataFrame,
@@ -236,3 +236,66 @@ def plot_eval_rewards(path: str, evaldf:pd.DataFrame, ts:int, eval_num:int) -> p
 
     ax.set_xlabel("eval_length", fontsize=5)
     ax.set_ylabel("reward", fontsize=5)
+
+
+# def multiple_success_rate(
+#     df: pd.DataFrame,
+#     greater_than_eq_is_optimal: float,
+#     y_axis: str = "failure",
+#     separate_by: ty.Optional[ty.Dict[str, str]] = None,
+# ):
+#     separate_by = separate_by or dict(col="buffer_size", row="train_interval")
+#     combined_df = None
+#     dfs_list = []
+#     g = None
+#     for x in df[separate_by["col"]].unique():
+#         for y in df[separate_by["row"]].unique():
+#             _df = df[((df[separate_by["col"]] == x) &
+#                       (df[separate_by["row"]] == y))]
+    
+#             for a in [True]:
+#             # for a in [True,False]:
+#                 _adf = _df[_df["active"] == a]
+
+#                 _bdf = (
+#                     _adf.groupby("timesteps")
+#                     .apply(lambda d: (d[y_axis].eq(False).sum()) / d.shape[0])
+#                     .to_frame("success_rate")
+#                 )
+
+#                 for col in _adf.columns:
+#                     if col not in _bdf.columns and len(_adf[col].unique()) == 1:
+#                         _bdf[col] = _adf[col].iloc[0]
+#                 combined_df = (
+#                     _bdf
+#                     if combined_df is None
+#                     else pd.concat([combined_df, _bdf.copy()])
+#                 )
+#                 assert combined_df is not None
+
+
+#                 dfs_list.append(combined_df.reset_index().replace(
+#                         {"active": {True: 1.0, False: 0.0}}))
+                
+#                 combined_df = None
+
+#     combined_df = pd.DataFrame()
+#     for data in dfs_list:
+#         combined_df = pd.concat([combined_df, data])
+    
+#     g = sns.FacetGrid(
+#         combined_df.reset_index().replace(
+#             {"active": {1.0: "active", 0.0: "passive"}}),
+#         **separate_by,
+#     )
+
+#     g.map_dataframe(
+#         _plot,
+#         x="timesteps",
+#         y="success_rate",
+#         hue="active",
+#         palette=palette,
+#     )
+
+#     g.set(ylim=(0,1))
+#     # g.add_legend()

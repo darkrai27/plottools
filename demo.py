@@ -4,7 +4,7 @@ import os
 
 from fsic import convert, io, merge, plot, query, transform
 
-PATH_TO_EXPERIMENTS = "C:\\Users\Z004HK5F\Desktop\Bachelor\doubleRegressor\LGBM\min_samples=5\lr=0.035"
+PATH_TO_EXPERIMENTS = "C:\\Users\Z004HK5F\Desktop\Bachelor\doubleRegressor\epsilonComparison\\buffer1024_eps001"
 # for folder in os.listdir("C:/Users/Z004HK5F/Desktop/Bachelor/rlresults/exploration/forests/forests50k/Grouped"):
 # PATH_TO_EXPERIMENTS = "C:/Users/Z004HK5F/Desktop/Bachelor/rlresults/exploration/forests/forests50k/Grouped/" + folder
 
